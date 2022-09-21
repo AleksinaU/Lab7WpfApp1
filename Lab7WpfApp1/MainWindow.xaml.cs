@@ -125,5 +125,12 @@ namespace Lab7WpfApp1
             Application.Current.Shutdown();
         }
 
+        private void Themes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Uri theme = new Uri(Themes.SelectedIndex == 0 ? "Light.xaml" : "Dark.xaml", UriKind.Relative);
+            ResourceDictionary themeDict = Application.LoadComponent(theme) as ResourceDictionary;
+            Application.Current.Resources.MergedDictionaries.Add(themeDict);
+        }
     }
 }
